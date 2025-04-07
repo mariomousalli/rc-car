@@ -6,31 +6,30 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/forward', methods=['GET'])
+@app.route('/forward')
 def move_forward():
     print("Moving forward")
-    return "Moving forward", 200
+    return "Forward command sent"
 
-@app.route('/backward', methods=['GET'])
+@app.route('/backward')
 def move_backward():
     print("Moving backward")
-    return "Moving backward", 200
+    return "Backward command sent"
 
-@app.route('/left', methods=['GET'])
-def move_left():
+@app.route('/left')
+def turn_left():
     print("Turning left")
-    return "Turning left", 200
+    return "Left command sent"
 
-@app.route('/right', methods=['GET'])
-def move_right():
+@app.route('/right')
+def turn_right():
     print("Turning right")
-    return "Turning right", 200
+    return "Right command sent"
 
-@app.route('/stop', methods=['GET'])
+@app.route('/stop')
 def stop():
-    print("Stopping")
-    return "Stopping", 200
+    print("Stop")
+    return "Stop command sent"
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
-    

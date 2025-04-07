@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RC Car Remote</title>
+  </head>
+  <body>
+    <h1>RC Car Remote Control</h1>
+    <button onclick="sendCommand('/forward')">Forward</button>
+    <button onclick="sendCommand('/backward')">Backward</button>
+    <button onclick="sendCommand('/left')">Left</button>
+    <button onclick="sendCommand('/right')">Right</button>
+    <button onclick="sendCommand('/stop')">Stop</button>
+
+    <script>
+      function sendCommand(endpoint) {
+        alert("Button clicked! Sending request to: " + endpoint); // <-- this should show a popup
+        fetch(endpoint)
+          .then((response) => response.text())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html>
