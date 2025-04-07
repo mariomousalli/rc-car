@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-void setup() {
-  Serial.begin(9600);
-  Serial.println("RC Car Controller");
-  pinMode(LED_BUILTIN, OUTPUT);
-  pinMode(LED_BUILTIN2, OUTPUT);
-  pinMode(LED_BUILTIN3, OUTPUT);
-  pinMode(LED_BUILTIN4, OUTPUT);
-}
-
-  // Initialize the motor driver pins
-  pinMode(MOTOR_LEFT_FORWARD, OUTPUT);
-  pinMode(MOTOR_LEFT_BACKWARD, OUTPUT);
-  pinMode(MOTOR_RIGHT_FORWARD, OUTPUT);
-  pinMode(MOTOR_RIGHT_BACKWARD, OUTPUT);
-
-  // Initialize the servo
-  myServo.attach(SERVO_PIN);
-  myServo.write(90); // Set initial position to center (90 degrees)
-
-  // Initialize the Bluetooth module
-  SerialBT.begin("RC_Car"); // Bluetooth device name
-  Serial.println("Bluetooth device is ready to pair");
-=======
 #include <SoftwareSerial.h>
 
 SoftwareSerial BTSerial(7, 6); // RX, TX for Bluetooth module
@@ -47,38 +23,37 @@ void loop() {
   if (BTSerial.available()) {  // Read command from Bluetooth
     char command = BTSerial.read();
 
-    if (command == 'b') { // Move Forward
+    if (command == 'w') { // Move Forward
       digitalWrite(adirection, HIGH);
       analogWrite(motoraspeed, 255);
 
       digitalWrite(bdirection, LOW);
       analogWrite(motorbspeed, 255);
     } 
-    else if (command == 'f') { // Move Backward
+    else if (command == 's') { // Move Backward
       digitalWrite(adirection, LOW);
       analogWrite(motoraspeed, 255);
 
       digitalWrite(bdirection, HIGH);
       analogWrite(motorbspeed, 255);
     } 
-    else if (command == 'l') { // Turn Right (Left Motor Forward, Right Motor Backward)
+    else if (command == 'd') { // Turn Right (Left Motor Forward, Right Motor Backward)
       digitalWrite(adirection, LOW);
-      analogWrite(motoraspeed, 255);
+      analogWrite(motoraspeed, 150);
 
       digitalWrite(bdirection, LOW);
-      analogWrite(motorbspeed, 255);
+      analogWrite(motorbspeed, 150);
     } 
-    else if (command == 'r') { // Turn Left (Left Motor Backward, Right Motor Forward)
+    else if (command == 'a') { // Turn Left (Left Motor Backward, Right Motor Forward)
       digitalWrite(adirection, HIGH);
-      analogWrite(motoraspeed, 255);
+      analogWrite(motoraspeed, 150);
 
       digitalWrite(bdirection, HIGH);
-      analogWrite(motorbspeed, 255);
+      analogWrite(motorbspeed, 150);
     } 
     else { // Stop
       analogWrite(motoraspeed, 0);
       analogWrite(motorbspeed, 0);
     }
   }
->>>>>>> c00a0007a2c63e195f39eef01e164439c40592bc
 }
