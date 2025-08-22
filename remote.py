@@ -8,26 +8,25 @@ print("Press 'w' to move forward, 's' to move backward, 'a' to turn left, 'd' to
 
 try:
     while True:
+        command = ""  # Start with an empty command
+
+        # Check which keys are pressed
         if keyboard.is_pressed('w'):
-            print("Moving Forward (w)")
-            bluetooth.write(b'w')  # Send 'w' to Arduino when 'w' is pressed
+            command += "w"  # Add 'w' for forward
+        if keyboard.is_pressed('s'):
+            command += "s"  # Add 's' for backward
+        if keyboard.is_pressed('a'):
+            command += "a"  # Add 'a' for left
+        if keyboard.is_pressed('d'):
+            command += "d"  # Add 'd' for right
 
-        elif keyboard.is_pressed('s'):
-            print("Moving Backward (s)")
-            bluetooth.write(b's')  # Send 's' to Arduino when 's' is pressed
-
-        elif keyboard.is_pressed('a'):
-            print("Turning Left (a)")
-            bluetooth.write(b'a')  # Send 'a' to Arduino when 'a' is pressed
-
-        elif keyboard.is_pressed('d'):
-            print("Turning Right (d)")
-            bluetooth.write(b'd')  # Send 'd' to Arduino when 'd' is pressed
-
+        # If no keys are pressed, send a stop signal
+        if command == "":
+            bluetooth.write(b' ')  # Send a space to stop
         else:
-            # If no key is pressed, stop the car
-            bluetooth.write(b' ')  # Send a stop signal when no key is pressed
+            bluetooth.write(command.encode())  # Send the combined command
 
+        # Exit condition
         if keyboard.is_pressed('esc'):
             print("Exiting...")
             bluetooth.write(b' ')  # Send a stop signal when exiting
