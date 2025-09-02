@@ -1,3 +1,9 @@
 {
-  "C_Cpp.default.compilerPath": "c:\\Windows\\System32\\cmd.exe"
+  "C_Cpp.default.compilerPath": "c:\\Windows\\System32\\cmd.exe",
+  "python.analysis.typeshedPaths": [
+    "~/.micropico-stubs/micropython-rp2-rpi_pico-stubs==1.25.0.post3"
+  ],
+  "python.analysis.extraPaths": [
+    "~/.micropico-stubs/micropython-rp2-rpi_pico-stubs==1.25.0.post3"
+  ]
 }
